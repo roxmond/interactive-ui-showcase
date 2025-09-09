@@ -4,7 +4,16 @@ import { useEffect, useState, useRef } from "react";
 export default function InfiniteListDemo() {
   const [all, setAll] = useState<{ id: number; title: string }[]>([]);
   const [visibleCount, setVisibleCount] = useState(20);
+  const [isLoading, setIsLoading] = useState(false);
   const sentinelRef = useRef<HTMLDivElement | null>(null);
+
+  const loadMore = () => {
+    setIsLoading(true);
+    setTimeout(() => {
+      setVisibleCount((prev) => Math.min(prev + 20, all.length));
+      setIsLoading(false);
+    }, 500);
+  };
 
   useEffect(() => {
     // Demo dataset
@@ -17,23 +26,21 @@ export default function InfiniteListDemo() {
   }, []);
 
   useEffect(() => {
-    if (!sentinelRef.current) return;
+    const current = sentinelRef.current;
+    if (!current) return;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) {
-          setVisibleCount((c) => Math.min(c + 20, all.length));
-        }
-      },
-      { threshold: 1 }
-    );
+    const observer = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting && !isLoading) {
+        loadMore();
+      }
+    });
 
-    observer.observe(sentinelRef.current);
+    observer.observe(current);
 
     return () => {
-      if (sentinelRef.current) observer.unobserve(sentinelRef.current);
+      if (current) observer.unobserve(current);
     };
-  }, [all.length]);
+  }, [isLoading, all.length]);
 
   const visibleItems = all.slice(0, visibleCount);
 
@@ -47,15 +54,12 @@ export default function InfiniteListDemo() {
           </li>
         ))}
         {visibleCount < all.length && (
-          <li
+          <div
             ref={sentinelRef}
             className="h-10 flex items-center justify-center text-sm text-base-content/50"
           >
-            <div className="flex justify-center items-center">
-              <span className="loading loading-spinner loading-md mr-2"></span>
-              <p>Loading...</p>
-            </div>
-          </li>
+            {isLoading ? "Loading..." : "Scroll to load more"}
+          </div>
         )}
         {visibleCount >= all.length && (
           <li className="text-center text-sm py-4 text-success">

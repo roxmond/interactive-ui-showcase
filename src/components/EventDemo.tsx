@@ -6,12 +6,12 @@ export default function EventDemo() {
   const boxRef = useRef<HTMLDivElement | null>(null);
   const [last, setLast] = useState<string | null>(null);
 
-  const handler = useCallback((e: any) => {
+  const handler = useCallback((e: MouseEvent) => {
     setLast(`Mouse at ${e.clientX}, ${e.clientY}`);
   }, []);
 
-  // attach to window
-  useEventListener("mousemove", handler, window);
+  // Attach listener: default is window
+  useEventListener("mousemove", handler);
 
   return (
     <div className="card p-4 max-w-xl">

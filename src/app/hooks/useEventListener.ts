@@ -3,16 +3,12 @@ import { useEffect, RefObject } from "react";
 export default function useEventListener<K extends keyof WindowEventMap>(
   eventName: K,
   handler: (ev: WindowEventMap[K]) => void,
-  element: RefObject<HTMLElement> | Window = window
+  element?: RefObject<HTMLElement>
 ) {
   useEffect(() => {
-    let target: HTMLElement | Window;
-    if ("current" in element) {
-      if (!element.current) return;
-      target = element.current;
-    } else {
-      target = element;
-    }
+    if (typeof window === "undefined") return; // SSR protection
+
+    const target: HTMLElement | Window = element?.current ?? window;
 
     target.addEventListener(eventName, handler as EventListener);
 

@@ -1,8 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import Link from "next/link";
 
 type Props = { params: { id: string } };
 
-export default async function PostPage({ params }: Props) {
+export default async function PostPage(props: Props) {
+  const { params } = await props;
   const id = params.id;
 
   // Φέρνουμε όλα τα posts από το API
