@@ -1,36 +1,71 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Next.js Application with Tailwind CSS and DaisyUI
+
+This repository contains a modern Next.js application built with Tailwind CSS and DaisyUI. It serves as a comprehensive demonstration of several key concepts in web development, making it an excellent learning resource or a starting point for your next project.
+
+## Features
+
+Forms and API Integration: Learn how to create dynamic forms that interact with an API to fetch and submit data.
+
+Event Handling: Explore how to effectively manage user interactions with event listeners.
+
+Data Visualization: The app displays dynamic data in an organized list format.
+
+Performance Optimization: Implements parent/child memoization with React.memo and useCallback to prevent unnecessary re-renders and boost performance.
+
+Data Loading Patterns: Features both traditional pagination and infinite scroll to efficiently handle large datasets, providing a smooth user experience.
+
+Enhanced User Experience: Utilizes skeleton loaders to provide visual feedback to the user while data is being fetched, improving the perceived loading speed.
+
+## Technologies Used
+
+Next.js: A React framework for building fast, full-stack web applications.
+
+React: A JavaScript library for building user interfaces.
+
+Tailwind CSS: A utility-first CSS framework for rapid and customizable styling.
+
+DaisyUI: A component library for Tailwind CSS that provides pre-styled, ready-to-use components.
 
 ## Getting Started
 
-First, run the development server:
+Follow these steps to get a local copy of the project up and running on your machine.
+
+Prerequisites
+Node.js (v18.0 or later)
+
+npm or yarn
+
+Installation
+Clone the repository:
+
+```bash
+git clone git@github.com:roxmond/interactive-ui-showcase.git
+cd interactive-ui-showcase
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+# or
+
+```bash
+yarn install
+```
+
+Run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+# or
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+yarn dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Open in your browser:
+Navigate to http://localhost:3000 to view the application.
