@@ -11,7 +11,10 @@ export default function Home() {
         ideal learning tool or a starting point for your own projects.
       </p>
 
-      <Link href="/" className="text-sm">
+      <Link
+        href="https://github.com/roxmond/interactive-ui-showcase"
+        className="text-sm"
+      >
         <p className="mt-6">GitHub Repository</p>
       </Link>
     </div>
