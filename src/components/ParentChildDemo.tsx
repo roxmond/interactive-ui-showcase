@@ -7,11 +7,10 @@ import React, {
   useEffect,
 } from "react";
 
-// 👶 Child component
+// Child component
 const Child = ({ name, onClick }: { name: string; onClick: () => void }) => {
   const renderCount = useRef(0);
 
-  // Αυξάνουμε το counter ΜΟΝΟ στον client
   useEffect(() => {
     renderCount.current += 1;
   });
@@ -28,16 +27,15 @@ const Child = ({ name, onClick }: { name: string; onClick: () => void }) => {
   );
 };
 
-// 👶 Memoized Child (με React.memo)
+// Memoized Child (React.memo)
 const ChildMemo = React.memo(Child);
 
-// 👨 Parent component
+// Parent component
 export default function MemoDemo() {
   const [parentCount, setParentCount] = useState(0);
 
   const parentRenderCount = useRef(0);
 
-  // Αυξάνουμε το counter ΜΟΝΟ στον client
   useEffect(() => {
     parentRenderCount.current += 1;
   });
@@ -45,7 +43,7 @@ export default function MemoDemo() {
   // Memoized data (Child names)
   const childNames = useMemo(() => ["A", "B"], []);
 
-  // Memoized callback (child δεν ξανα-render όταν αλλάζει το parent)
+  // Memoized callback
   const handleClick = useCallback(() => {
     alert("Clicked child!");
   }, []);

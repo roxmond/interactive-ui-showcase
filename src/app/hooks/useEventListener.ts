@@ -6,11 +6,18 @@ export default function useEventListener<K extends keyof WindowEventMap>(
   element: RefObject<HTMLElement> | Window = window
 ) {
   useEffect(() => {
-    const target: any =
-      element && "current" in (element as any) ? element.current : window;
-    if (!target) return;
+    let target: HTMLElement | Window;
+    if ("current" in element) {
+      if (!element.current) return;
+      target = element.current;
+    } else {
+      target = element;
+    }
+
     target.addEventListener(eventName, handler as EventListener);
-    return () =>
+
+    return () => {
       target.removeEventListener(eventName, handler as EventListener);
+    };
   }, [eventName, handler, element]);
 }
